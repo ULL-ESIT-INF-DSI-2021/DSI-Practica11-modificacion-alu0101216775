@@ -1,6 +1,7 @@
-import express from 'express'
-import mongoose from 'mongoose'
+import * as express from 'express'
+import * as mongoose from 'mongoose'
 
+import User from './models/User'
 
 class Server {
     public app: express.Application;
