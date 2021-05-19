@@ -1,5 +1,8 @@
 import {Request, Response, Router} from 'express'
-import createUser from '../db-operations/createUser'
+import {createUser} from '../db-operations/createUser'
+import {deleteUser} from '../db-operations/deleteUser'
+import {getUser} from '../db-operations/getUser'
+import {updateUser} from '../db-operations/updateUser'
 
 class ApiRoutes {
     router: Router;
@@ -9,10 +12,10 @@ class ApiRoutes {
     }
 
     routes() {
-        this.router.get('/', getIngredients);
-        this.router.post('/', postIngredient);
-        this.router.put('/', putIngredient);
-        this.router.delete('/', deleteIngredient);
+        this.router.get('/', getUser);
+        this.router.post('/', createUser);
+        this.router.put('/', updateUser);
+        this.router.delete('/', deleteUser);
     }
 }
 

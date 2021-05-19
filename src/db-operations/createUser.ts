@@ -1,5 +1,3 @@
-import * as express from 'express'
-import * as mongoose from 'mongoose'
 import {Request, Response, Router} from 'express'
 
 import User from '../models/User'

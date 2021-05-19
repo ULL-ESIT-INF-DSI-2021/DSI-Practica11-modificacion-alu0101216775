@@ -1,18 +1,14 @@
-import * as express from 'express'
-import * as mongoose from 'mongoose'
-
-import User from './models/User'
-import apiRoutes from './routes/index.routes'
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express = require("express");
+const mongoose = require("mongoose");
+const index_routes_1 = require("./routes/index.routes");
 class Server {
-    public app;
-
     constructor() {
         this.app = express();
         this.configure();
-        this.routes(); 
+        this.routes();
     }
-
     configure() {
         // Database
         const DATABASE = 'mongodb://localhost/users';
@@ -21,24 +17,21 @@ class Server {
             useNewUrlParser: true,
             useCreateIndex: true
         }).then(db => console.log("Database connected!"))
-        .catch(db => console.error("Error connecting to Database"));
+            .catch(db => console.error("Error connecting to Database"));
         //Port
-        this.app.set('port', process.env.PORT  || 3000);
+        this.app.set('port', process.env.PORT || 3000);
         //Middlewares
         this.app.use(express.json());
-        this.app.use(express.urlencoded({extended: false}));
+        this.app.use(express.urlencoded({ extended: false }));
     }
-
     routes() {
-        this.app.use(apiRoutes);
+        this.app.use(index_routes_1.default);
     }
-
     start() {
         this.app.listen(this.app.get('port'), () => {
             console.log('Server listening on port', this.app.get('port'));
-        })
+        });
     }
 }
-
 const server = new Server();
 server.start();
